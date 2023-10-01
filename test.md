@@ -1,0 +1,229 @@
+- CompilationUnit
+  - UsingDirective: using System;
+    - Identifier Name: System
+  - UsingDirective: using System.IO;
+    - QualifiedName
+      - Identifier Name: System
+      - Identifier Name: IO
+  - Class Declaration: Program
+    - Method Declaration: Main
+      - Predefined Type: void
+      - ParameterList: ()
+      - Block
+        - Expression Statement: Console.WriteLine("Hello, World!")
+          - Invocation Expression: Console.WriteLine
+            - Member Access Expression: WriteLine
+              - Identifier Name: Console
+              - Identifier Name: WriteLine
+            - ArgumentList: ("Hello, World!")
+              - Argument: "Hello, World!"
+                - StringLiteralExpression
+        - Local Declaration Statement: string path = "./input";
+          - Variable Declaration: path
+            - Predefined Type: string
+            - Variable Declarator: path
+              - EqualsValueClause
+                - StringLiteralExpression
+        - ForEachStatement
+          - Predefined Type: string
+          - Invocation Expression: Directory.GetFiles
+            - Member Access Expression: GetFiles
+              - Identifier Name: Directory
+              - Identifier Name: GetFiles
+            - ArgumentList: (path, "*.cs")
+              - Argument: path
+                - Identifier Name: path
+              - Argument: "*.cs"
+                - StringLiteralExpression
+          - Block
+            - Local Declaration Statement: string fileName = Path.GetFileName(file);
+              - Variable Declaration: fileName
+                - Predefined Type: string
+                - Variable Declarator: fileName
+                  - EqualsValueClause
+                    - Invocation Expression: Path.GetFileName
+                      - Member Access Expression: GetFileName
+                        - Identifier Name: Path
+                        - Identifier Name: GetFileName
+                      - ArgumentList: (file)
+                        - Argument: file
+                          - Identifier Name: file
+            - Expression Statement: Console.WriteLine($"File Name: {fileName}")
+              - Invocation Expression: Console.WriteLine
+                - Member Access Expression: WriteLine
+                  - Identifier Name: Console
+                  - Identifier Name: WriteLine
+                - ArgumentList: ($"File Name: {fileName}")
+                  - Argument: $"File Name: {fileName}"
+                    - InterpolatedStringExpression
+                      - InterpolatedStringText
+                      - Interpolation
+                        - Identifier Name: fileName
+            - Local Declaration Statement: string contents = File.ReadAllText(file);
+              - Variable Declaration: contents
+                - Predefined Type: string
+                - Variable Declarator: contents
+                  - EqualsValueClause
+                    - Invocation Expression: File.ReadAllText
+                      - Member Access Expression: ReadAllText
+                        - Identifier Name: File
+                        - Identifier Name: ReadAllText
+                      - ArgumentList: (file)
+                        - Argument: file
+                          - Identifier Name: file
+            - Expression Statement: Console.WriteLine($"Contents: {contents}")
+              - Invocation Expression: Console.WriteLine
+                - Member Access Expression: WriteLine
+                  - Identifier Name: Console
+                  - Identifier Name: WriteLine
+                - ArgumentList: ($"Contents: {contents}")
+                  - Argument: $"Contents: {contents}"
+                    - InterpolatedStringExpression
+                      - InterpolatedStringText
+                      - Interpolation
+                        - Identifier Name: contents
+        - Expression Statement: Console.ReadLine()
+          - Invocation Expression: Console.ReadLine
+            - Member Access Expression: ReadLine
+              - Identifier Name: Console
+              - Identifier Name: ReadLine
+            - ArgumentList: ()
+    - Method Declaration: Sub
+      - Predefined Type: void
+      - ParameterList: ()
+      - Block
+        - Expression Statement: Console.WriteLine("整数を入力してください:")
+          - Invocation Expression: Console.WriteLine
+            - Member Access Expression: WriteLine
+              - Identifier Name: Console
+              - Identifier Name: WriteLine
+            - ArgumentList: ("整数を入力してください:")
+              - Argument: "整数を入力してください:"
+                - StringLiteralExpression
+        - Local Declaration Statement: string userInput = Console.ReadLine();
+          - Variable Declaration: userInput
+            - Predefined Type: string
+            - Variable Declarator: userInput
+              - EqualsValueClause
+                - Invocation Expression: Console.ReadLine
+                  - Member Access Expression: ReadLine
+                    - Identifier Name: Console
+                    - Identifier Name: ReadLine
+                  - ArgumentList: ()
+        - TryStatement
+          - Block
+            - Local Declaration Statement: int number = int.Parse(userInput);
+              - Variable Declaration: number
+                - Predefined Type: int
+                - Variable Declarator: number
+                  - EqualsValueClause
+                    - Invocation Expression: int.Parse
+                      - Member Access Expression: Parse
+                        - Predefined Type: int
+                        - Identifier Name: Parse
+                      - ArgumentList: (userInput)
+                        - Argument: userInput
+                          - Identifier Name: userInput
+            - Expression Statement: Console.WriteLine("入力された整数は: " + number)
+              - Invocation Expression: Console.WriteLine
+                - Member Access Expression: WriteLine
+                  - Identifier Name: Console
+                  - Identifier Name: WriteLine
+                - ArgumentList: ("入力された整数は: " + number)
+                  - Argument: "入力された整数は: " + number
+                    - AddExpression
+                      - StringLiteralExpression
+                      - Identifier Name: number
+          - Catch Clause
+            - Catch Declaration:
+              - Identifier Name: FormatException
+            - Block
+              - Expression Statement: Console.WriteLine("無効な入力です。整数を入力してください。")
+                - Invocation Expression: Console.WriteLine
+                  - Member Access Expression: WriteLine
+                    - Identifier Name: Console
+                    - Identifier Name: WriteLine
+                  - ArgumentList: ("無効な入力です。整数を入力してください。")
+                    - Argument: "無効な入力です。整数を入力してください。"
+                      - StringLiteralExpression
+        - Expression Statement: Console.WriteLine("プログラムが終了しました。")
+          - Invocation Expression: Console.WriteLine
+            - Member Access Expression: WriteLine
+              - Identifier Name: Console
+              - Identifier Name: WriteLine
+            - ArgumentList: ("プログラムが終了しました。")
+              - Argument: "プログラムが終了しました。"
+                - StringLiteralExpression
+    - Method Declaration: AddNumbers
+      - Predefined Type: int
+      - ParameterList: (int a, int b)
+        - Parameter
+          - Predefined Type: int
+        - Parameter
+          - Predefined Type: int
+      - Block
+        - Local Declaration Statement: int sum = a + b;
+          - Variable Declaration: sum
+            - Predefined Type: int
+            - Variable Declarator: sum
+              - EqualsValueClause
+                - AddExpression
+                  - Identifier Name: a
+                  - Identifier Name: b
+        - Return Statement
+          - Identifier Name: sum
+  - Class Declaration: Worker
+    - BaseList
+      - SimpleBaseType
+        - Identifier Name: BackgroundService
+    - FieldDeclaration
+      - Variable Declaration: _logger
+        - GenericName
+          - TypeArgumentList
+            - Identifier Name: Worker
+        - Variable Declarator: _logger
+    - ConstructorDeclaration
+      - ParameterList: (ILogger<Worker> logger)
+        - Parameter
+          - GenericName
+            - TypeArgumentList
+              - Identifier Name: Worker
+      - ArrowExpressionClause
+        - SimpleAssignmentExpression
+          - Identifier Name: _logger
+          - Identifier Name: logger
+    - Method Declaration: ExecuteAsync
+      - Identifier Name: Task
+      - ParameterList: (CancellationToken stoppingToken)
+        - Parameter
+          - Identifier Name: CancellationToken
+      - Block
+        - WhileStatement
+          - LogicalNotExpression
+            - Member Access Expression: IsCancellationRequested
+              - Identifier Name: stoppingToken
+              - Identifier Name: IsCancellationRequested
+          - Block
+            - Expression Statement: _logger.LogInformation("Worker running at: {time}", DateTimeOffset.UtcNow)
+              - Invocation Expression: _logger.LogInformation
+                - Member Access Expression: LogInformation
+                  - Identifier Name: _logger
+                  - Identifier Name: LogInformation
+                - ArgumentList: ("Worker running at: {time}", DateTimeOffset.UtcNow)
+                  - Argument: "Worker running at: {time}"
+                    - StringLiteralExpression
+                  - Argument: DateTimeOffset.UtcNow
+                    - Member Access Expression: UtcNow
+                      - Identifier Name: DateTimeOffset
+                      - Identifier Name: UtcNow
+            - Expression Statement: await Task.Delay(1_000, stoppingToken)
+              - AwaitExpression
+                - Invocation Expression: Task.Delay
+                  - Member Access Expression: Delay
+                    - Identifier Name: Task
+                    - Identifier Name: Delay
+                  - ArgumentList: (1_000, stoppingToken)
+                    - Argument: 1_000
+                      - NumericLiteralExpression
+                    - Argument: stoppingToken
+                      - Identifier Name: stoppingToken
